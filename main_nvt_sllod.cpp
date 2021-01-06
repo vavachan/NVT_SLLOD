@@ -78,28 +78,13 @@ int main(int argc, char *argv[])
 //  }
 	double t_accum=0.;
 	double delta_t=0.0001;
-	double g_max=0.035;
-	int tau=2000;;
-	double g_dot=(2.*3.14159265359)*g_max/tau;
-	double omega=(2.*3.14159265359)/tau;
-	//double g_max=(g_dot*tau)/2.;
-	cout<<g_dot<<"\n";
-	for(int t=0; t*delta_t<4000*tau; t++)
+	for(int t=0; t<10000000; t++)
 	{
-		
-		double shear_rate = g_dot*cos(omega*t*delta_t);
-		double STRAIN = g_max*sin(omega*t*delta_t);
-		integrate_NVT_SLLOD(X,G,delta_t,shear_rate,STRAIN);
-		//if(int(t*delta_t)%(int(tau)/2)>0)
-		if((t%5000)==0)
+		integrate_NVT_SLLOD(X,G,delta_t);
+		if(t%5000==0)
 		{
 			cout<<t*delta_t<<"\n";
-			write_config(t,X,"NVT_cyclic_shear_");
-		}
-		if(t%int(0.5*tau/delta_t)==0)
-		{
-			cout<<t*delta_t<<"\n";
-			write_config(int(t/int(0.5*tau/delta_t)),X,"NVT_CYC_STROB_");
+			write_config(t,X,"NVT_shear_low_shear_rate");
 		}
 	}
 //////calculate_gradient(X,G,ndim);

@@ -349,9 +349,9 @@ void mVV_SLLOD( double X[], double GRAD[], double delta_t, double shear_rate,dou
 }
 
 
-void integrate_NVT_SLLOD(double X[], double GRAD[], double delta_t, double shear_rate, double STRAIN)
+void integrate_NVT_SLLOD(double X[], double GRAD[], double delta_t)
 {
-	//double shear_rate=0.0001;
+	double shear_rate=0.0001;
 
 	static double xi=0.;
 
@@ -359,8 +359,7 @@ void integrate_NVT_SLLOD(double X[], double GRAD[], double delta_t, double shear
 	
 	double Q=0.1;
 	
-	//STRAIN=(shear_rate*delta_t)
-	//STRAIN=STRAIN+shear_rate*delta_t;
+	STRAIN=STRAIN+shear_rate*delta_t;
 	NH_SLLOD(X,V,xi,Pxi,Q,delta_t,KEnergy,shear_rate);
 	mVV_SLLOD(X,GRAD,delta_t,shear_rate,STRAIN);
 	NH_SLLOD(X,V,xi,Pxi,Q,delta_t,KEnergy,shear_rate);
@@ -393,6 +392,6 @@ void write_config(int k,  double X[], char name[])
 	}
 	fstream stat("stat_"+std::string(name)+".dat", fstream::out | fstream::app);
 	//cout<<k<<"\t"<<"\t"<<PEnergy<<"\t"<<KEnergy<<"\t"<<KEnergy/(N)<<"\t"<<T<<"\n";
-	stat<<k<<"\t"<<tilt/BOX<<"\t"<<PEnergy<<"\t"<<KEnergy<<"\t"<<KEnergy/(N)<<"\t"<<T<<"\t"<<stress_tensor[0][0]<<"\t"<<stress_tensor[0][1]<<"\t"<<stress_tensor[1][1]<<"\t"<<pressure_virial<<"\t"<<p_applied<<"\t"<<3.14159265359*(N/2.)*(0.5*0.5+0.7*0.7)/(BOX*BOX)<<"\n";;
+	stat<<k<<"\t"<<"\t"<<PEnergy<<"\t"<<KEnergy<<"\t"<<KEnergy/(N)<<"\t"<<T<<"\t"<<stress_tensor[0][0]<<"\t"<<stress_tensor[0][1]<<"\t"<<stress_tensor[1][1]<<"\t"<<pressure_virial<<"\t"<<p_applied<<"\t"<<3.14159265359*(N/2.)*(0.5*0.5+0.7*0.7)/(BOX*BOX)<<"\n";;
 	
 }
