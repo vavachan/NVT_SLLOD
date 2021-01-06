@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
 //  	//G[i]=GRAD[i];
 //  }
 	double t_accum=0.;
-	double delta_t=0.0001;
+	double delta_t=0.01;
 	for(int t=0; t<10000000; t++)
 	{
 		integrate_NVT_SLLOD(X,G,delta_t);
