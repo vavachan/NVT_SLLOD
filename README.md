@@ -20,7 +20,10 @@ The format for the INPUT_FILE is as follows
 
 The simulation box is defined from 
 
-`-[BOX]/2 [BOX/2`
+``` 
+	-[BOX]/2 [BOX]/2
+	-[BOX]/2 [BOX]/2
+```
 
 ![image](/PRESS_TEMP_NVT_SLLOD.png)
 
