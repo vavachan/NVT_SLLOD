@@ -10,10 +10,19 @@ To compile the code use
 
 Please use gcc version 7.3.0 or above
 
-To run the code 
+To run the code use 
 
-use 
+`nvt.o [INPUT_FILE] [BOX]`
 
-`nvt.o [INPUT_FILE] [BOXh]`
+The format for the INPUT_FILE is as follows 
+
+`particle_ID POS_X POS_Y RADIUS`
+
+The simulation box is defined from 
+
+`-[BOX]/2 [BOX/2`
 
 ![image](/PRESS_TEMP_NVT_SLLOD.png)
+
+The image above compares the data produced by the code with identical 
+simulation in LAMMPS for a system of 1000 bi-disperse soft-spheres.
